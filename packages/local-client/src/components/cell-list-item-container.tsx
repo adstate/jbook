@@ -14,6 +14,9 @@ const CellListItemContainer: React.FC<Props> = ({ cell }) => {
   const { dragCellStart, dragCell, dragCellEnd, registerElemRect } =
     useActions();
 
+  const draggingObj = useTypedSelector(({ drag }) => drag.dragging);
+  const isNotDragging = !draggingObj;
+
   useEffect(() => {
     console.log(
       'cellListItem',
@@ -22,7 +25,7 @@ const CellListItemContainer: React.FC<Props> = ({ cell }) => {
     );
     console.log('useEffect');
     registerElemRect(cell.id, dragElementRef.current.getBoundingClientRect());
-  }, []);
+  }, [isNotDragging]);
 
   // const dragging = useTypedSelector(({ drag }) => {
   //   return drag.dragging?.cellId === cell.id;

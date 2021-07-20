@@ -239,10 +239,36 @@ export const dragCell = (id: string, shiftY: number) => {
   };
 };
 
-export const dragCellEnd = (id: string): DragCellEndAction => {
-  return {
-    type: ActionType.DRAG_CELL_END,
-    payload: id,
+export const dragCellEnd = (id: string) => {
+  return (dispatch: Dispatch<Action>, getState: () => RootState) => {
+    const {
+      cells: { order },
+      drag: { dragging },
+    } = getState();
+
+    if (!dragging) {
+      return;
+    }
+
+    const prevCellIndex = order.indexOf(id);
+    const newCellIndex = order.indexOf(dragging.targetCell);
+    const moveSteps = newCellIndex - prevCellIndex;
+    const direction = moveSteps > 0 ? 'down' : 'up';
+
+    for (let i = 0; i < Math.abs(moveSteps); i++) {
+      dispatch({
+        type: ActionType.MOVE_CELL,
+        payload: {
+          id,
+          direction,
+        },
+      });
+    }
+
+    dispatch({
+      type: ActionType.DRAG_CELL_END,
+      payload: id,
+    });
   };
 };
 
