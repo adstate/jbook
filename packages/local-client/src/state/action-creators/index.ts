@@ -186,6 +186,8 @@ export const dragCell = (id: string, shiftY: number) => {
       width: dragging.rect.width,
     };
 
+    const direction = Math.sign(shiftY);
+
     const target = order.filter((cellId) => {
       const cellRect = cells[cellId].rect;
 
@@ -199,14 +201,13 @@ export const dragCell = (id: string, shiftY: number) => {
         return false;
       }
 
-      return hasOverlapEnough(curDraggedCellRect, cellRect);
+      return hasOverlapEnough(curDraggedCellRect, cellRect, direction);
     });
 
     if (target.length === 0) {
       return;
     }
 
-    const direction = Math.sign(shiftY);
     const targetElement = direction > 0 ? target[target.length - 1] : target[0];
     const delta = direction > 0 ? 1 : 0;
 
@@ -254,6 +255,12 @@ function getHasOverlap(first: ClientRect, second: ClientRect): boolean {
   );
 }
 
-function hasOverlapEnough(first: ClientRect, second: ClientRect): boolean {
-  return Math.abs(first.bottom - second.top) > 70;
+function hasOverlapEnough(
+  first: ClientRect,
+  second: ClientRect,
+  direction: number
+): boolean {
+  return direction > 0
+    ? Math.abs(first.bottom - second.top) > 55
+    : Math.abs(first.top - second.bottom) > 55;
 }
