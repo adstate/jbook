@@ -8,8 +8,35 @@
   height: 30px;
   width: 100%;
   background-color: #37414b;
+  cursor: grab;
 }
 
-.cell-list-item.draggable {
-  z-index: 11;
+.cell-list-item-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.cell-list-item-container.draggable {
+  position: fixed;
+  width: calc(100% - 50px);
+  /* width: calc(100% - 70px); */
+  z-index: 1100;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.cell-list-item-container.draggable .action-bar-wrapper {
+  cursor: grabbing;
+}
+
+.cell-list-item-container:not(.draggable) {
+  /* transition-property: transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out; */
+}
+
+.cell-list-item-container_moved:not(.draggable) {
+  transition-property: transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 }

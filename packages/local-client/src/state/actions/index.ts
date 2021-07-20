@@ -69,6 +69,53 @@ export interface SaveCellsErrorAction {
   payload: string;
 }
 
+export interface InitDragMapAction {
+  type: ActionType.INIT_DRAG_MAP;
+  payload: Cell[];
+}
+
+export interface RegisterElemRect {
+  type: ActionType.REGISTER_ELEM_RECT;
+  payload: {
+    cellId: string;
+    rect: ClientRect;
+  };
+}
+
+export interface SlideCellsAction {
+  type: ActionType.SLIDE_CELLS;
+  payload: {
+    cells: string[];
+    shiftY: number;
+  };
+}
+
+export interface SetTargetCell {
+  type: ActionType.SET_TARGET_CELL;
+  payload: string;
+}
+
+export interface DragCellStartAction {
+  type: ActionType.DRAG_CELL_START;
+  payload: {
+    id: string;
+    rect: ClientRect;
+  };
+}
+
+export interface DragCellAction {
+  type: ActionType.DRAG_CELL;
+  payload: {
+    id: string;
+    shiftY: number;
+  };
+}
+
+export interface DragCellEndAction {
+  type: ActionType.DRAG_CELL_END;
+  payload: string;
+}
+
 export type Action =
   | MoveCellAction
   | DeleteCellAction
@@ -79,4 +126,11 @@ export type Action =
   | FetchCellsAction
   | FetchCellsCompleteAction
   | FetchCellsErrorAction
-  | SaveCellsErrorAction;
+  | SaveCellsErrorAction
+  | InitDragMapAction
+  | SlideCellsAction
+  | DragCellStartAction
+  | DragCellAction
+  | DragCellEndAction
+  | RegisterElemRect
+  | SetTargetCell;

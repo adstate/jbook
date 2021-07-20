@@ -9,4 +9,11 @@ export enum ActionType {
   FETCH_CELLS_COMPLETE = 'fetch_cells_complete',
   FETCH_CELLS_ERROR = 'fetch_cells_error',
   SAVE_CELLS_ERROR = 'save_cells_error',
+  INIT_DRAG_MAP = 'init_drag_map',
+  REGISTER_ELEM_RECT = 'register_element_rect',
+  SET_TARGET_CELL = 'set_target_cell',
+  SLIDE_CELLS = 'slice_cells',
+  DRAG_CELL_START = 'drag_cell_start',
+  DRAG_CELL = 'drag_cell',
+  DRAG_CELL_END = 'drag_cell_end',
 }

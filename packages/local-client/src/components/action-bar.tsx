@@ -13,7 +13,9 @@ const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
     <div className="action-bar">
       <ActionButton
         iconClass="fa-arrow-up"
-        onClick={() => moveCell(id, 'up')}
+        onClick={() => {
+          moveCell(id, 'up');
+        }}
       />
 
       <ActionButton
