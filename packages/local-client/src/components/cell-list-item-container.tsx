@@ -18,12 +18,6 @@ const CellListItemContainer: React.FC<Props> = ({ cell }) => {
   const isNotDragging = !draggingObj;
 
   useEffect(() => {
-    console.log(
-      'cellListItem',
-      cell.id,
-      dragElementRef.current.getBoundingClientRect()
-    );
-    console.log('useEffect');
     registerElemRect(cell.id, dragElementRef.current.getBoundingClientRect());
   }, [isNotDragging]);
 
@@ -69,7 +63,7 @@ const CellListItemContainer: React.FC<Props> = ({ cell }) => {
       document.body.style.cursor = 'default';
 
       document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mousemove', onMouseUp);
+      document.removeEventListener('mouseup', onMouseUp);
     };
 
     document.addEventListener('mousemove', onMouseMove);

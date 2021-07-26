@@ -255,14 +255,16 @@ export const dragCellEnd = (id: string) => {
     const moveSteps = newCellIndex - prevCellIndex;
     const direction = moveSteps > 0 ? 'down' : 'up';
 
-    for (let i = 0; i < Math.abs(moveSteps); i++) {
-      dispatch({
-        type: ActionType.MOVE_CELL,
-        payload: {
-          id,
-          direction,
-        },
-      });
+    if (moveSteps !== 0) {
+      for (let i = 0; i < Math.abs(moveSteps); i++) {
+        dispatch({
+          type: ActionType.MOVE_CELL,
+          payload: {
+            id,
+            direction,
+          },
+        });
+      }
     }
 
     dispatch({
